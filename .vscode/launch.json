@@ -1,12 +1,12 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "java",
-      "name": "backtest",
-      "request": "launch",
-      "mainClass": "com.exnight.backtest.Application",
-      "projectName": "backtest"
-    }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "backtest",
+            "request": "launch",
+            "mainClass": "com.exnight.backtest.Application",
+            "projectName": "backtest"
+        }
+    ]
 }
