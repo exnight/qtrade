@@ -5,8 +5,8 @@
             "type": "java",
             "name": "backtest",
             "request": "launch",
-            "mainClass": "com.exnight.backtest.Application",
-            "projectName": "backtest"
+            "mainClass": "backtest.Application",
+            "projectName": "app"
         }
     ]
 }
