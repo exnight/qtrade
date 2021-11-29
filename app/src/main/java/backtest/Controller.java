@@ -1,4 +1,4 @@
-package com.exnight.backtest;
+package backtest;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -7,8 +7,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +36,7 @@ public class Controller {
         return "Hello world! Maybe return html and JS here...";
     }
 
-    @RequestMapping(value = "/stock/{symbol}", method = RequestMethod.GET,
-            produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(path = "/stock/{symbol}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
     public Flux<StockPrice> prices(@PathVariable String symbol) {
         return Flux.interval(Duration.ofSeconds(1))
