@@ -13,7 +13,7 @@ class ApplicationTest {
     private Controller controller;
 
     @Test
-    void contextLoads() {
+    void runApp_shouldLoadController() {
         assertNotNull(controller);
     }
 

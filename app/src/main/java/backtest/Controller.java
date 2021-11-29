@@ -26,7 +26,7 @@ public class Controller {
         StockPrice(String symbol, Double price, LocalDateTime time) {
             this.symbol = symbol;
             this.price = price;
-            this.time = time; // s
+            this.time = time;
         }
 
     }
