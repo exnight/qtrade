@@ -39,7 +39,7 @@ class MetricService : MetricsInterface {
         var maxDrawDown = updateMaxDrawDown(0.0, peak, trough)
 
         for (i in 1 until returns.size) {
-            val currValue = netValue[i - 1] * (1 - returns[i])
+            val currValue = netValue[i - 1] * (1 + returns[i])
             netValue[i] = currValue
             if (currValue > peak) {
                 peak = currValue

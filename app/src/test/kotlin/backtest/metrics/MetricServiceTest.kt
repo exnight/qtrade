@@ -2,6 +2,7 @@ package backtest.metrics
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import backtest.util.Math
 
 internal class MetricServiceTest {
 
@@ -27,8 +28,31 @@ internal class MetricServiceTest {
     }
 
     @Test
-    fun calcMDD_TODO() {
-        TODO()
+    fun calcMDD_noChange_zero() {
+        val returns = doubleArrayOf(0.0, 0.0, 0.0, 0.0)
+        val maxDrawDown = metricsService.calculateMaxDrawDown(returns)
+        assertEquals(0.0, maxDrawDown, Math.PRECISION)
+    }
+
+    @Test
+    fun calcMDD_monotonicIncrease_zero() {
+        val returns = doubleArrayOf(0.0, 0.1, 0.0, 0.25, 0.15)
+        val maxDrawDown = metricsService.calculateMaxDrawDown(returns)
+        assertEquals(0.0, maxDrawDown, Math.PRECISION)
+    }
+
+    @Test
+    fun calcMDD_oneDecline_20percent() {
+        val returns = doubleArrayOf(0.0, 0.0, -0.2, 0.25, 0.1)
+        val maxDrawDown = metricsService.calculateMaxDrawDown(returns)
+        assertEquals(-0.2, maxDrawDown, Math.PRECISION)
+    }
+
+    @Test
+    fun calcMDD_twoDeclines_52percent() {
+        val returns = doubleArrayOf(0.0, -0.2, 0.0, 0.25, 0.5, -0.2, -0.4, 0.25)
+        val maxDrawDown = metricsService.calculateMaxDrawDown(returns)
+        assertEquals(-0.52, maxDrawDown, Math.PRECISION)
     }
 
 }
