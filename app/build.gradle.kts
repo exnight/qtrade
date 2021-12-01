@@ -23,10 +23,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
-    implementation ("io.springfox:springfox-boot-starter:3.0.0")
-
-    compileOnly ("org.projectlombok:lombok")
-    annotationProcessor ("org.projectlombok:lombok")
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
