@@ -1,8 +1,0 @@
-{
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "java.format.settings.profile": "GoogleStyle",
-    "java.format.settings.url": "file:./other/modified-java-Google-style.xml",
-    "[java]": {
-        "editor.defaultFormatter": "redhat.java"
-    }
-}
