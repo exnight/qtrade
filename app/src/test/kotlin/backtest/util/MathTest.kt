@@ -3,8 +3,15 @@ package backtest.util
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import java.math.BigDecimal
 
 internal class MathTest {
+
+    @Test
+    fun precision_shouldReturnTrue() {
+        val expectedPrecision = BigDecimal.valueOf(1e-8)
+        assertTrue(expectedPrecision.equals(BigDecimal.valueOf(Math.PRECISION)))
+    }
 
     @Test
     fun zero_shouldReturnTrue() {

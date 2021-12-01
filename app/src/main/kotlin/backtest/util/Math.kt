@@ -6,7 +6,7 @@ class Math {
 
     companion object {
 
-        private const val PRECISION = 1e-8
+        const val PRECISION = 1e-8
         fun isZero(double: Double): Boolean {
             return abs(double) < PRECISION
         }
