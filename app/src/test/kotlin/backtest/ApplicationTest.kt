@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest
 internal class ApplicationTest {
 
     @Autowired
-    private val controller: Controller? = null
+    private val defaultController: DefaultController? = null
 
     @Test
     fun runApp_shouldLoadController() {
-        Assertions.assertNotNull(controller)
+        Assertions.assertNotNull(defaultController)
     }
 
 }
