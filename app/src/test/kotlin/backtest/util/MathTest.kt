@@ -28,5 +28,19 @@ internal class MathTest {
         assertFalse(Math.isZero(1e-6))
     }
 
+    @Test
+    fun roundDecimal_to4DP_shouldReturn4DP() {
+        val expected = "1.2345"
+        val actual = Math.roundDecimal(1.23445, 4).toString()
+        assertTrue(expected == actual)
+    }
+
+    @Test
+    fun roundDecimal_to2DP_shouldReturn2DP() {
+        val expected = "7.21"
+        val actual = Math.roundDecimal(7.214, 2).toString()
+        assertTrue(expected == actual)
+    }
+
 }
 
