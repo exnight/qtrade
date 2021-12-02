@@ -5,17 +5,17 @@ interface MetricsInterface {
     data class StandardMetrics(val sharpe: Double, val maxDrawDown: Double)
 
     /**
-     * Return the standard metrics
+     * Calculate the annualized Sharpe ratio and maximum drawdown with a net asset value series
      */
-    fun getStandardMetrics(): StandardMetrics
+    fun calculateStandardMetrics(netAssetValue: DoubleArray): StandardMetrics
 
     /**
-     * TODO: add documentation
+     * Calculate the Sharpe ratio with a return series of equal time intervals
      */
     fun calculateSharpe(equalIntervalReturns: DoubleArray): Double
 
     /**
-     * TODO: add documentation
+     * Calculate the maximum drawdown of a return series
      */
     fun calculateMaxDrawDown(returns: DoubleArray): Double
 

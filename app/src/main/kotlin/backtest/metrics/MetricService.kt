@@ -5,12 +5,24 @@ import kotlin.math.min
 import kotlin.math.pow
 import backtest.metrics.MetricsInterface.StandardMetrics
 import backtest.util.Math.Companion.isZero
+import backtest.util.Math.Companion.roundDecimal
 
 @Service
 class MetricService : MetricsInterface {
 
-    override fun getStandardMetrics(): StandardMetrics {
-        return StandardMetrics(0.67, 0.29)
+    override fun calculateStandardMetrics(netAssetValue: DoubleArray): StandardMetrics {
+        val returns = DoubleArray(netAssetValue.size - 1) { 0.0 }
+        for (i in 1 until netAssetValue.size) {
+            returns[i - 1] = (netAssetValue[i] / netAssetValue[i - 1]) - 1
+        }
+
+        val decimalPlaces = 4
+        val annualizedSharpe = roundDecimal(
+            calculateSharpe(returns) * 365.25.pow(0.5), decimalPlaces
+        )
+        val maxDrawDown = roundDecimal(calculateMaxDrawDown(returns), decimalPlaces)
+
+        return StandardMetrics(annualizedSharpe, maxDrawDown)
     }
 
     override fun calculateSharpe(equalIntervalReturns: DoubleArray): Double {
@@ -54,7 +66,9 @@ class MetricService : MetricsInterface {
         return maxDrawDown
     }
 
-    private fun updateMaxDrawDown(maxDrawDown: Double, peak: Double, trough: Double): Double {
+    private fun updateMaxDrawDown(
+        maxDrawDown: Double, peak: Double, trough: Double
+    ): Double {
         return min(maxDrawDown, (trough - peak) / peak)
     }
 

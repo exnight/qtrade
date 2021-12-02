@@ -9,10 +9,11 @@ internal class MetricServiceTest {
     private val metricsService: MetricService = MetricService()
 
     @Test
-    fun getStandardMetrics() {
-        val metrics = metricsService.getStandardMetrics()
-        assertEquals(0.67, metrics.sharpe, Math.PRECISION)
-        assertEquals(0.29, metrics.maxDrawDown, Math.PRECISION)
+    fun calcStandardMetrics() {
+        val metrics =
+            metricsService.calculateStandardMetrics(doubleArrayOf(1.0, 1.25, 1.0, 1.25, 1.0))
+        assertEquals(2.1235, metrics.sharpe, Math.PRECISION)
+        assertEquals(-0.2, metrics.maxDrawDown, Math.PRECISION)
     }
 
     @Test
