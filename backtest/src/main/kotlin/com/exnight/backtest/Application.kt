@@ -1,4 +1,4 @@
-package backtest
+package com.exnight.backtest
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

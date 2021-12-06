@@ -1,4 +1,4 @@
-package backtest.metrics
+package com.exnight.backtest.metrics
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

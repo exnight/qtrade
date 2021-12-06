@@ -1,4 +1,4 @@
-package backtest.metrics
+package com.exnight.backtest.metrics
 
 interface MetricsInterface {
 

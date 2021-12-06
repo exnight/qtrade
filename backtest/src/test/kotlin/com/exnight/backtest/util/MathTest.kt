@@ -1,4 +1,4 @@
-package backtest.util
+package com.exnight.backtest.util
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue

@@ -1,2 +1,2 @@
 rootProject.name = "qtrade-backtest"
-include("app")
+include("backtest")

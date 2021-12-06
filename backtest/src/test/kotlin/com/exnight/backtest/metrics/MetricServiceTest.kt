@@ -1,8 +1,8 @@
-package backtest.metrics
+package com.exnight.backtest.metrics
 
+import com.exnight.backtest.util.Math
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import backtest.util.Math
 
 internal class MetricServiceTest {
 
