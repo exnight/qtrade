@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-internal class ApplicationTest {
+internal class BacktestAppTest {
 
     @Autowired
     private val defaultController: DefaultController? = null

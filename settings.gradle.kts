@@ -1,2 +1,2 @@
-rootProject.name = "qtrade-backtest"
+rootProject.name = "qtrade"
 include("backtest")

@@ -1,6 +1,6 @@
-# QTrade - backtest
+# QTrade
 
-This is the backtest service of the full QTrade stack.
+This is the monorepo of the QTrade stack.
 
 <!-- TODO: describe functionalities -->
 
