@@ -26,17 +26,10 @@ class MetricService : MetricsInterface {
     }
 
     override fun calculateSharpe(equalIntervalReturns: DoubleArray): Double {
-        val numberOfReturns = equalIntervalReturns.size
-        if (numberOfReturns == 0) return 0.0
+        if (equalIntervalReturns.isEmpty()) return 0.0
 
-        val mean = equalIntervalReturns.sum() / numberOfReturns
-        var standardDeviation = 0.0
-
-        for (ret in equalIntervalReturns) {
-            standardDeviation += (ret - mean).pow(2.0)
-        }
-        standardDeviation /= numberOfReturns
-        standardDeviation = standardDeviation.pow(0.5)
+        val mean = calculateMean(equalIntervalReturns)
+        val standardDeviation = calculateStandardDeviation(equalIntervalReturns)
 
         return if (isZero(standardDeviation)) -1.0 else mean / standardDeviation
     }
@@ -64,6 +57,25 @@ class MetricService : MetricsInterface {
         }
 
         return maxDrawDown
+    }
+
+    private fun calculateMean(equalIntervalReturns: DoubleArray): Double {
+        val numberOfReturns = equalIntervalReturns.size
+        return if (numberOfReturns == 0) 0.0 else equalIntervalReturns.sum() / numberOfReturns
+    }
+
+    private fun calculateStandardDeviation(equalIntervalReturns: DoubleArray): Double {
+        if (equalIntervalReturns.isEmpty()) return 0.0
+        return calculateVariance(equalIntervalReturns).pow(0.5)
+    }
+
+    private fun calculateVariance(equalIntervalReturns: DoubleArray): Double {
+        val mean = calculateMean(equalIntervalReturns)
+        return equalIntervalReturns.fold(0.0) { acc, ret ->
+            acc + (ret - mean).pow(
+                2.0
+            ) / equalIntervalReturns.size
+        }
     }
 
     private fun updateMaxDrawDown(
