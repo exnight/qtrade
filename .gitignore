@@ -27,3 +27,5 @@ out/
 
 .vscode
 .DS_Store
+
+/bazel-*
