@@ -45,15 +45,15 @@ kt_compiler_plugin(
     ],
 )
 
-kt_jvm_library(
-    name = "kotlin_serialization",
-    srcs = [],
-    exported_compiler_plugins = [":serialization_plugin"],
-    visibility = ["//visibility:public"],
-    exports = [
-        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_core_jvm",
-    ],
-)
+#kt_jvm_library(
+#    name = "kotlin_serialization",
+#    srcs = [],
+#    exported_compiler_plugins = [":serialization_plugin"],
+#    visibility = ["//visibility:public"],
+#    exports = [
+#        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_core_jvm",
+#    ],
+#)
 
 kt_compiler_plugin(
     name = "no_arg_plugin",

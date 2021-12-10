@@ -24,7 +24,7 @@ http_archive(
     ],
 )
 
-load("//:repositories.bzl", "rules_spring_deps")
+load("//:common/repositories.bzl", "rules_spring_deps")
 rules_spring_deps()
 
 load("@maven//:defs.bzl", "pinned_maven_install")

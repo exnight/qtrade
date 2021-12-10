@@ -19,6 +19,7 @@ def rules_spring_deps():
             "org.jetbrains.kotlin:kotlin-reflect:1.5.0",
             "org.jetbrains.kotlin:kotlin-stdlib:1.5.0",
             "org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.4.1",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.1",
 
             "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0",
 
@@ -35,6 +36,6 @@ def rules_spring_deps():
         version_conflict_policy = "pinned",
         strict_visibility = True,
         generate_compat_repositories = False,
-        maven_install_json = "//:maven_install.json",
+        maven_install_json = "//:common/maven_install.json",
         resolve_timeout = 1800,
     )
