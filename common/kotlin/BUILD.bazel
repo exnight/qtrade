@@ -29,7 +29,7 @@ define_kt_toolchain(
     name = "kotlin_toolchain",
     api_version = KOTLIN_LANGUAGE_LEVEL,  # "1.1", "1.2", or "1.3"
     javac_options = ":default_javac_options",
-    jvm_target = "1.8",  # "1.6", "1.8", "9", "10", "11", or "12",
+    jvm_target = "11",  # "1.6", "1.8", "9", "10", "11", or "12",
     kotlinc_options = ":kotlinc_options",
     language_version = KOTLIN_LANGUAGE_LEVEL,  # "1.1", "1.2", or "1.3"
 )

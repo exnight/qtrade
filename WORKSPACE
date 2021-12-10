@@ -43,8 +43,8 @@ http_archive(
     ],
 )
 
-KOTLIN_VERSION = "1.4.20"
-KOTLINC_RELEASE_SHA = "11db93a4d6789e3406c7f60b9f267eba26d6483dcd771eff9f85bb7e9837011f"
+KOTLIN_VERSION = "1.5.32"
+KOTLINC_RELEASE_SHA = "2e728c43ee0bf819eae06630a4cbbc28ba2ed5b19a55ee0af96d2c0ab6b6c2a5"
 KOTLINC_RELEASE = {
     "urls": [
         "https://github.com/JetBrains/kotlin/releases/download/v{v}/kotlin-compiler-{v}.zip".format(v = KOTLIN_VERSION),
@@ -54,29 +54,6 @@ KOTLINC_RELEASE = {
 load("@io_bazel_rules_kotlin//kotlin:repositories.bzl", "kotlin_repositories")
 kotlin_repositories()
 
-load("@io_bazel_rules_kotlin//kotlin:core.bzl", "kt_register_toolchains")
-kt_register_toolchains()
-#register_toolchains("//common/kotlin:kotlin_toolchain")
-
-
-#load("@rules_jvm_external//:defs.bzl", "maven_install")
-
-#maven_install(
-#    artifacts = [
-#        "org.springframework.boot:spring-boot-starter-webflux:2.6.1",
-#        "org.springframework.boot:spring-boot-loader-tools:2.6.1",
-#        "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0",
-#        "io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5",
-#        "org.jetbrains.kotlin:kotlin-reflect:1.5.32",
-#        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.32",
-#        "org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2",
-#        "io.springfox:springfox-boot-starter:3.0.0",
-#        "org.springframework.boot:spring-boot-starter-test:2.6.1",
-#        "io.projectreactor:reactor-test:3.4.12",
-#    ],
-#    repositories = [
-#        "https://maven.google.com",
-#        "https://repo1.maven.org/maven2",
-#    ],
-#    maven_install_json = "@//:maven_install.json",
-#)
+#load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_register_toolchains")
+#kt_register_toolchains()
+register_toolchains("//common/kotlin:kotlin_toolchain")
