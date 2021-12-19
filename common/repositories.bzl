@@ -7,6 +7,7 @@ repositories = [
 
 SPRING_BOOT_VERSION = "2.4.4"
 SPRING_VERSION = "5.3.5"
+JETBRAINS_KOTLIN_VERSION = "1.5.0"
 JUNIT_JUPITER_VERSION = "5.5.0"
 
 def rules_spring_deps():
@@ -16,9 +17,9 @@ def rules_spring_deps():
             "org.springframework.boot:spring-boot-starter-webflux:%s" % SPRING_BOOT_VERSION,
             "org.springframework.boot:spring-boot-starter-test:%s" % SPRING_BOOT_VERSION,
 
-            "org.jetbrains.kotlin:kotlin-reflect:1.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:1.5.0",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.4.1",
+            "org.jetbrains.kotlin:kotlin-reflect:%s" % JETBRAINS_KOTLIN_VERSION,
+            "org.jetbrains.kotlin:kotlin-stdlib:%s" % JETBRAINS_KOTLIN_VERSION,
+            "org.jetbrains.kotlinx:kotlinx-coroutines-reactor:%s" % JETBRAINS_KOTLIN_VERSION,
             "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.1",
 
             "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0",
