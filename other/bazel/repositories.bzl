@@ -5,8 +5,8 @@ repositories = [
  "https://repo1.maven.org/maven2",
 ]
 
-SPRING_BOOT_VERSION = "2.4.4"
-SPRING_VERSION = "5.3.5"
+SPRING_BOOT_VERSION = "2.6.1"
+SPRING_VERSION = "5.3.13"
 JETBRAINS_KOTLIN_VERSION = "1.5.0"
 JUNIT_JUPITER_VERSION = "5.5.0"
 
@@ -16,6 +16,7 @@ def rules_spring_deps():
             "org.springframework.boot:spring-boot-loader:%s" % SPRING_BOOT_VERSION,
             "org.springframework.boot:spring-boot-starter-webflux:%s" % SPRING_BOOT_VERSION,
             "org.springframework.boot:spring-boot-starter-test:%s" % SPRING_BOOT_VERSION,
+            "org.springframework:spring-core:%s" % SPRING_VERSION,
 
             "org.jetbrains.kotlin:kotlin-reflect:%s" % JETBRAINS_KOTLIN_VERSION,
             "org.jetbrains.kotlin:kotlin-stdlib:%s" % JETBRAINS_KOTLIN_VERSION,
@@ -37,6 +38,6 @@ def rules_spring_deps():
         version_conflict_policy = "pinned",
         strict_visibility = True,
         generate_compat_repositories = False,
-        maven_install_json = "//:common/maven_install.json",
+        maven_install_json = "//:other/bazel/maven_install.json",
         resolve_timeout = 1800,
     )

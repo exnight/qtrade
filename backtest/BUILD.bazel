@@ -6,6 +6,7 @@ load(
 load("@rules_spring//springboot:springboot.bzl", "springboot")
 
 deps = [
+    "@maven//:org_springframework_spring_core",
     "@maven//:org_springframework_boot_spring_boot_starter_webflux",
     "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_reactor",
     "@maven//:com_fasterxml_jackson_module_jackson_module_kotlin",
@@ -22,9 +23,9 @@ kt_jvm_library(
     name = "backtest_lib",
     srcs = glob(["src/main/kotlin/**/*.kt"]),
     plugins = [
-        "//common/kotlin:allopen_plugin",
-        "//common/kotlin:no_arg_plugin",
-#        "//common/kotlin:serialization_plugin",
+        "//other/bazel/kotlin:allopen_plugin",
+        "//other/bazel/kotlin:no_arg_plugin",
+#        "//other/bazel/kotlin:serialization_plugin",
     ],
     resources = glob(["src/main/resources/**/*"]),
     runtime_deps = runtime_deps,
@@ -32,7 +33,7 @@ kt_jvm_library(
 )
 
 springboot(
-    name = "backtest",
+    name = "backtest_app",
     boot_app_class = "com.exnight.backtest.BacktestAppKt",
     fail_on_duplicate_classes = False,
     java_library = ":backtest_lib",

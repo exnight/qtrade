@@ -24,7 +24,7 @@ http_archive(
     ],
 )
 
-load("//:common/repositories.bzl", "rules_spring_deps")
+load("//:other/bazel/repositories.bzl", "rules_spring_deps")
 rules_spring_deps()
 
 load("@maven//:defs.bzl", "pinned_maven_install")
@@ -56,4 +56,4 @@ kotlin_repositories()
 
 #load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_register_toolchains")
 #kt_register_toolchains()
-register_toolchains("//common/kotlin:kotlin_toolchain")
+register_toolchains("//other/bazel/kotlin:kotlin_toolchain")
