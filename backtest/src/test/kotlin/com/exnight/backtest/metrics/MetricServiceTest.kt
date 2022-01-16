@@ -12,7 +12,7 @@ internal class MetricServiceTest {
     fun calcStandardMetrics() {
         val metrics =
             metricsService.calculateStandardMetrics(doubleArrayOf(1.0, 1.25, 1.0, 1.25, 1.0))
-        assertEquals(2.1235, metrics.sharpe, Math.PRECISION)
+        assertEquals(1.7638, metrics.sharpe, Math.PRECISION)
         assertEquals(-0.2, metrics.maxDrawDown, Math.PRECISION)
     }
 
