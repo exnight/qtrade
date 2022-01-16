@@ -7,12 +7,15 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.http.server.reactive.ServerHttpResponse
+import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.server.ServerWebInputException
 import java.net.URI
 import java.time.Duration
 import java.time.LocalDateTime
@@ -39,6 +42,7 @@ class DefaultController {
 
     @PostMapping(path = ["/metrics"])
     fun computeStandardMetrics(@RequestBody metricsRequest: MetricsRequest): Mono<StandardMetrics> {
+        metricsRequest.validate()
         logger.info("computing standard metrics")
         return Mono.just(metricService.calculateStandardMetrics(metricsRequest.netAssetValues))
     }
@@ -47,6 +51,11 @@ class DefaultController {
     fun prices(@PathVariable symbol: String): Flux<StockPrice> {
         return Flux.interval(Duration.ofSeconds(1)).take(5)
             .map { StockPrice(symbol, randomStockPrice(), LocalDateTime.now()) }
+    }
+
+    @ExceptionHandler(value = [ServerWebInputException::class])
+    fun handleBadRequest(exception: ServerWebInputException):  ResponseEntity<String> {
+        return ResponseEntity.badRequest().body(exception.message)
     }
 
     private fun randomStockPrice(): Double {
