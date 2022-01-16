@@ -18,7 +18,7 @@ class MetricService : MetricsInterface {
 
         val decimalPlaces = 4
         val annualizedSharpe = roundDecimal(
-            calculateSharpe(returns) * 365.25.pow(0.5), decimalPlaces
+            calculateSharpe(returns) * 252.0.pow(0.5), decimalPlaces
         )
         val maxDrawDown = roundDecimal(calculateMaxDrawDown(returns), decimalPlaces)
 
