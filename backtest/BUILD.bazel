@@ -3,6 +3,7 @@ load(
     "kt_jvm_library",
     "kt_jvm_test",
 )
+load("@rules_java//java:defs.bzl", "java_binary")
 load("@rules_spring//springboot:springboot.bzl", "springboot")
 
 deps = [
@@ -25,8 +26,16 @@ kt_jvm_library(
     plugins = [
         "//other/bazel/kotlin:allopen_plugin",
         "//other/bazel/kotlin:no_arg_plugin",
-#        "//other/bazel/kotlin:serialization_plugin",
+        #        "//other/bazel/kotlin:serialization_plugin",
     ],
+    resources = glob(["src/main/resources/**/*"]),
+    runtime_deps = runtime_deps,
+    deps = deps + ["util_lib"],
+)
+
+java_library(
+    name = "util_lib",
+    srcs = glob(["src/main/java/**/*.java"]),
     resources = glob(["src/main/resources/**/*"]),
     runtime_deps = runtime_deps,
     deps = deps,
@@ -42,11 +51,11 @@ springboot(
 
 kt_jvm_test(
     name = "test",
-    main_class = "org.junit.platform.console.ConsoleLauncher",
+    srcs = glob(["src/test/kotlin/**/*.kt"]),
     args = [
         "--select-package=com.exnight.backtest",
     ],
-    srcs = glob(["src/test/kotlin/**/*.kt"]),
+    main_class = "org.junit.platform.console.ConsoleLauncher",
     resources = glob(["src/test/resources/**"]),
     deps = [
         ":backtest_lib",
@@ -55,5 +64,36 @@ kt_jvm_test(
         "@maven//:org_junit_jupiter_junit_jupiter_params",
         "@maven//:org_junit_platform_junit_platform_console",
         "@maven//:org_springframework_boot_spring_boot_starter_test",
-    ]
+    ],
+)
+
+java_library(
+    name = "test_lib_java",
+    testonly = 1,
+    srcs = glob(["src/test/java/**/*.java"]),
+    deps = [
+        ":util_lib",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
+    ],
+)
+
+java_test(
+    name = "JavaTests",
+    srcs = glob(["src/test/java/**/*.java"]),
+    args = [
+        "--select-package=com.exnight.backtest",
+    ],
+    main_class = "org.junit.platform.console.ConsoleLauncher",
+    use_testrunner = False,
+    runtime_deps = [
+        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_suite_api",
+    ],
+    deps = [
+        ":util_lib",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_junit_jupiter_junit_jupiter_params",
+        "@maven//:org_junit_platform_junit_platform_suite_api",
+    ],
 )

@@ -1,8 +1,8 @@
 package com.exnight.backtest.metrics
 
 import com.exnight.backtest.metrics.MetricsInterface.StandardMetrics
-import com.exnight.backtest.util.Math.Companion.isZero
-import com.exnight.backtest.util.Math.Companion.roundDecimal
+import com.exnight.backtest.util.MathUtil.isZero
+import com.exnight.backtest.util.MathUtil.roundDecimal
 import org.springframework.stereotype.Service
 import kotlin.math.min
 import kotlin.math.pow

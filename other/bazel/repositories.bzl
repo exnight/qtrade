@@ -31,6 +31,7 @@ def rules_spring_deps():
             "org.junit.jupiter:junit-jupiter-engine:%s" % JUNIT_JUPITER_VERSION,
             "org.junit.jupiter:junit-jupiter-params:%s" % JUNIT_JUPITER_VERSION,
             "org.junit.platform:junit-platform-console:1.5.0",
+            "org.junit.platform:junit-platform-suite-api:1.5.0",
         ],
         excluded_artifacts = [],
         repositories = repositories,
