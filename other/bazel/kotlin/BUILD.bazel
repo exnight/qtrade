@@ -1,15 +1,5 @@
-load(
-    "@io_bazel_rules_kotlin//kotlin:kotlin.bzl",
-    "define_kt_toolchain",
-    "kt_compiler_plugin",
-)
-
-load(
-    "@io_bazel_rules_kotlin//kotlin:core.bzl",
-    "kt_javac_options",
-    "kt_kotlinc_options",
-)
-
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "define_kt_toolchain", "kt_compiler_plugin")
+load("@io_bazel_rules_kotlin//kotlin:core.bzl", "kt_javac_options", "kt_kotlinc_options")
 load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
 
 KOTLIN_LANGUAGE_LEVEL = "1.5"
@@ -18,7 +8,6 @@ kt_kotlinc_options(
     name = "kotlinc_options",
     x_allow_result_return_type = True,
     x_inline_classes = True,
-#    x_opt_in = ["kotlinx.coroutines.ExperimentalCoroutinesApi"]
 )
 
 kt_javac_options(
@@ -33,27 +22,6 @@ define_kt_toolchain(
     kotlinc_options = ":kotlinc_options",
     language_version = KOTLIN_LANGUAGE_LEVEL,
 )
-
-#kt_compiler_plugin(
-#    name = "serialization_plugin",
-#    compile_phase = True,
-#    id = "org.jetbrains.kotlin.serialization",
-#    stubs_phase = True,
-#    visibility = ["//visibility:public"],
-#    deps = [
-#        "@com_github_jetbrains_kotlin//:kotlinx-serialization-compiler-plugin",
-#    ],
-#)
-
-#kt_jvm_library(
-#    name = "kotlin_serialization",
-#    srcs = [],
-#    exported_compiler_plugins = [":serialization_plugin"],
-#    visibility = ["//visibility:public"],
-#    exports = [
-#        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_core_jvm",
-#    ],
-#)
 
 kt_compiler_plugin(
     name = "no_arg_plugin",
