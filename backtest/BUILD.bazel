@@ -1,5 +1,6 @@
 load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
 load("@rules_java//java:defs.bzl", "java_binary")
+load("@contrib_rules_jvm//java:defs.bzl", "java_test_suite")
 load("@rules_spring//springboot:springboot.bzl", "springboot")
 
 deps = [
@@ -53,28 +54,27 @@ kt_jvm_test(
     ],
     main_class = "org.junit.platform.console.ConsoleLauncher",
     resources = glob(["src/test/resources/**"]),
-    deps = [
-        ":backtest_lib",
-        "@maven//:org_junit_jupiter_junit_jupiter_api",
+    runtime_deps = [
         "@maven//:org_junit_platform_junit_platform_console",
+    ],
+    deps = [
+        "//backtest:backtest_lib",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
         "@maven//:org_springframework_boot_spring_boot_starter_test",
     ],
 )
 
-java_test(
+java_test_suite(
     name = "test_java",
     srcs = glob(["src/test/java/**/*.java"]),
-    args = [
-        "--select-package=com.exnight.backtest",
-    ],
-    main_class = "org.junit.platform.console.ConsoleLauncher",
-    use_testrunner = False,
+    runner = "junit5",
     runtime_deps = [
         "@maven//:org_junit_jupiter_junit_jupiter_engine",
-        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_launcher",
+        "@maven//:org_junit_platform_junit_platform_reporting",
     ],
     deps = [
-        ":util_lib",
+        "//backtest:util_lib",
         "@maven//:org_junit_jupiter_junit_jupiter_api",
     ],
 )
